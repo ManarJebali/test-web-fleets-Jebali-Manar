@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# intlayer (generated dictionaries/types, rebuilt via `intlayer build`)
+/.intlayer/
+
 # production
 /build
 
