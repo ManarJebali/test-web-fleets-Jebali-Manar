@@ -1,0 +1,32 @@
+// Prisma schema for the Fleets feature.
+//
+// NOTE: only the `Fleet` model is added here. There is no `User` model in
+// this scaffold (no auth system exists yet), so `userId` is a plain scalar
+// column rather than a relation — see `src/lib/auth.ts` for the mocked
+// current-user id it is scoped by.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Fleet {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  color       String
+  description String?
+  // Number of companies attached to the fleet. There is no company-management
+  // UI in this scope (the creation form only exposes name/color/description),
+  // so this is a plain counter that defaults to 0 for a newly created fleet
+  // rather than a real relation — see the integration-plan note in README.
+  companyCount Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, createdAt])
+}

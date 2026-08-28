@@ -122,7 +122,7 @@ export const ModalRoot = ({
   if (!isOpen || !portalElement) return null;
 
   return createPortal(
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="sync">
       {React.Children.map(children, (child, index) =>
         React.isValidElement(child)
           ? React.cloneElement(child, { key: child.key ?? `${id}-${index}` })
