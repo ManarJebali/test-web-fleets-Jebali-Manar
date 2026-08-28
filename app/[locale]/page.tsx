@@ -1,5 +1,6 @@
-import { TestModal } from "@/components/test-modal";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-	return <TestModal />;
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+	const { locale } = await params;
+	redirect(`/${locale}/fleets`);
 }
